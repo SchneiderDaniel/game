@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import copy
 
 
 class SudokuBoard:
@@ -18,9 +19,16 @@ class SudokuBoard:
         result = "" 
         for row in self.board:  
             result+= "|" + row + "|" +"\n"
-
         return result
 
+    def __eq__(self, other):
+        if isinstance(other, SudokuBoard):
+            return np.array_equal(self.board,other.board)
+        return False
+
+    def getCopy(self):
+        return copy.deepcopy(self)
+        
     def fill(self,values):
         if  values.shape != self.board.shape: return False
         self.board = values

@@ -30,7 +30,20 @@ fullboard0 = SudokuBoard(9)
 fullboard0.fill(content0)
 fullboard1 = SudokuBoard(9)
 fullboard1.fill(content1)
+fullboard1copy = fullboard1.getCopy()
 
+
+def testisEqual1():
+    assert fullboard1==fullboard1copy
+
+def testisEqual2():
+    assert emptyBoard==fullboard0
+
+def testisEqual3():
+    assert (emptyBoard!=fullboard0)==False
+
+def testisEqual4():
+    assert (fullboard1!=fullboard1copy)==False
 
 def testisFilled0():
     assert fullboard0.isFilled()==False
