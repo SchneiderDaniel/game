@@ -26,6 +26,11 @@ class SudokuBoard:
         self.board = values
         return True
 
+    def isFilled(self):
+        for cell in np.nditer(self.board):
+            if cell!=-1: return True
+        return False
+
     def enter(self,x,y,value):
         result = self.isEnterValid(x,y,value)
         if result: self.board[x,y]=value
@@ -69,7 +74,8 @@ class SudokuBoard:
 
     def isGridOfCellContaining(self,x,y,value):
         grid = self.gridCoordToCell(x,y)
-        return self.isGridContaining(grid,value)
+        check = self.isGridContaining(grid[0],grid[1],value)
+        return check
 
     def isGridContaining(self,gridx,gridy,value):
         

@@ -4,11 +4,38 @@ from board.SudokuBoard import SudokuBoard
 emptyBoard = SudokuBoard(9)
 
 def testSize():
-    assert emptyBoard.size == 9
+    assert emptyBoard.size==9
 
 def testCellAmount():
-    assert emptyBoard.cellAmount == 81
- 
+    assert emptyBoard.cellAmount==81
+
+def testGridSize():
+    assert emptyBoard.gridSize==3
+
+def testGridAmount():
+    assert emptyBoard.gridAmount==9
+
+def testIsFilled():
+    assert emptyBoard.isFilled()==False
+
+def testIsEnterValid():
+    assert emptyBoard.isEnterValid(0,0,1)==True
+
+def testGet():
+    assert emptyBoard.get(0,0)==-1
+
+def testgridCoord1():
+    assert emptyBoard.gridCoordToCell(0,0)==(0,0) 
+
+def testgridCoord2():
+    assert emptyBoard.gridCoordToCell(2,2)==(0,0)
+
+def testgridCoord3():
+    assert emptyBoard.gridCoordToCell(8,8)==(2,2)  
+
+def testgridCoord4():
+    assert emptyBoard.gridCoordToCell(0,8)==(0,2) 
+
 # import pytest
 # from wallet import Wallet, InsufficientAmount
 
