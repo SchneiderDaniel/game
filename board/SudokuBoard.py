@@ -33,7 +33,7 @@ class SudokuBoard:
 
     def enter(self,x,y,value):
         result = self.isEnterValid(x,y,value)
-        if result: self.board[x,y]=value
+        if result: self.board[y,x]=value
         return result
 
     def isEnterValid(self,x,y,value):
@@ -44,13 +44,13 @@ class SudokuBoard:
         return True
     
     def get(self,x,y):
-        return self.board[x,y]
+        return self.board[y,x]
         
     def isCellFilled(self,x,y):
-        return not (self.board[x,y]==-1)
+        return not (self.board[y,x]==-1)
 
     def isRowOfCellConatining(self,x,y,value):
-        return self.isRowContaining(x,value)
+        return self.isRowContaining(y,value)
 
     def isRowContaining(self,row_index,value):
         row=self.board[row_index]
@@ -59,7 +59,7 @@ class SudokuBoard:
         return False
 
     def isColOfCellConatining(self,x,y,value):
-        return self.isColContaining(y,value)
+        return self.isColContaining(x,value)
 
     def isColContaining(self,col_index,value):
         col=self.board[:,col_index]
@@ -78,14 +78,12 @@ class SudokuBoard:
         return check
 
     def isGridContaining(self,gridx,gridy,value):
-        
         n1 = np.arange(gridx*self.gridSize,gridx*self.gridSize+3)
         n2 = np.arange(gridy*self.gridSize,gridy*self.gridSize+3)
-
-        for i, j in zip(n1, n2):
-            if self.isCellFilled(i,j):
-                if self.get(i,j)==value: return True
-
+        for i in n1:
+            for j in n2:
+                if self.isCellFilled(i,j):
+                    if self.get(i,j)==value: return True
         return False   
     
 
