@@ -22,7 +22,7 @@ def testIsEnterValid():
     assert emptyBoard.isEnterValid(0,0,1)==True
 
 def testGet():
-    assert emptyBoard.get(0,0)==-1
+    assert emptyBoard.get(0,0)==0
 
 def testgridCoord1():
     assert emptyBoard.gridCoordToCell(0,0)==(0,0) 

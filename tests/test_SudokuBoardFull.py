@@ -4,26 +4,26 @@ import numpy as np
 
 
 
-content0 = np.array([    [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                         [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                         [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                         [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                         [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                         [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                         [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                         [-1,-1,-1,-1,-1,-1,-1,-1,-1],
-                         [-1,-1,-1,-1,-1,-1,-1,-1,-1]], np.int32)
+content0 = np.array([    [0,0,0,0,0,0,0,0,0],
+                         [0,0,0,0,0,0,0,0,0],
+                         [0,0,0,0,0,0,0,0,0],
+                         [0,0,0,0,0,0,0,0,0],
+                         [0,0,0,0,0,0,0,0,0],
+                         [0,0,0,0,0,0,0,0,0],
+                         [0,0,0,0,0,0,0,0,0],
+                         [0,0,0,0,0,0,0,0,0],
+                         [0,0,0,0,0,0,0,0,0]], np.int32)
 
 #https://www.researchgate.net/figure/An-Example-Sudoku-Puzzle-and-its-Solution-1_fig1_264572573
-content1 = np.array([    [-1,-1,-1,-1,-1,-1,2,-1,-1],
-                         [-1,8,-1,-1,-1,7,-1,9,-1],
-                         [6,-1,2,-1,-1,-1,5,-1,-1],
-                         [-1,7,-1,-1,6,-1,-1,-1,-1],
-                         [-1,-1,-1,9,-1,1,-1,-1,-1],
-                         [-1,-1,-1,-1,2,-1,-1,4,-1],
-                         [-1,-1,5,-1,-1,-1,6,-1,3],
-                         [-1,9,-1,4,-1,-1,-1,7,-1],
-                         [-1,-1,6,-1,-1,-1,-1,-1,-1]], np.int32)
+content1 = np.array([    [0,0,0,0,0,0,2,0,0],
+                         [0,8,0,0,0,7,0,9,0],
+                         [6,0,2,0,0,0,5,0,0],
+                         [0,7,0,0,6,0,0,0,0],
+                         [0,0,0,9,0,1,0,0,0],
+                         [0,0,0,0,2,0,0,4,0],
+                         [0,0,5,0,0,0,6,0,3],
+                         [0,9,0,4,0,0,0,7,0],
+                         [0,0,6,0,0,0,0,0,0]], np.int32)
 
 emptyBoard = SudokuBoard(9)
 fullboard0 = SudokuBoard(9)
@@ -52,7 +52,7 @@ def testisFilled1():
     assert fullboard1.isFilled()==True
 
 def testGet1():
-    assert fullboard1.get(0,0)==-1
+    assert fullboard1.get(0,0)==0
 def testGet2():
     assert fullboard1.get(1,1)==8
 def testGet3():
@@ -168,3 +168,22 @@ def testEnter():
     temp.enter(0,0,3)
 
     assert temp!=fullboard1
+
+def testMask():
+    allowed = fullboard1.allowedValues[0][0]
+    assert allowed==int("0101011101", 2)
+
+def testMask2():
+    allowed = fullboard1.allowedValues[7][8]
+    
+    assert allowed==int("0010010011", 2)
+
+def testMask3():
+    allowed = fullboard1.allowedValues[0][3]
+    
+    assert allowed==int("0010110101", 2)
+
+def testMask4():
+    allowed = fullboard1.allowedValues[8][8]
+    
+    assert allowed==int("0110011011", 2) 

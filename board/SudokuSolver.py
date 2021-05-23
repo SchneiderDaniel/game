@@ -52,5 +52,12 @@ class SudokuSolver:
 
         return solution.board
 
+#http://byteauthor.com/2010/08/sudoku-solver-update/
+    def solvePairsAndLines(self, input :SudokuBoard):
 
         
+       
+
+
+
+        return None
