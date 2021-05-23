@@ -187,3 +187,27 @@ def testMask4():
     allowed = fullboard1.allowedValues[8][8]
     
     assert allowed==int("0110011011", 2) 
+
+def testMask5():
+    allowed = fullboard1.allowedValues[8][5]
+    
+    assert allowed==int("0110011110", 2) 
+    
+def testCountBit1():
+    assert fullboard1.countSetBits(8,8)==6
+
+def testCountBit2():    
+    assert fullboard1.countSetBits(3,0)==5
+
+def testCountBit3():
+    assert fullboard1.countSetBits(8,7)==4
+
+def testLastBit1():
+    assert fullboard1.getLastSetBitIndex(8,8)==0
+
+def testLastBit2():
+    assert fullboard1.getLastSetBitIndex(3,0)==0
+
+def testLastBit3():
+    assert fullboard1.getLastSetBitIndex(5,8)==1
+

@@ -54,10 +54,52 @@ class SudokuSolver:
 
 #http://byteauthor.com/2010/08/sudoku-solver-update/
     def solvePairsAndLines(self, input :SudokuBoard):
+        solution = input.getCopy()
 
+
+        lastPlacedNumbersCount = 0
+        while ((solution.placedNumberCount - lastPlacedNumbersCount)>3 & solution.placedNumberCount < 68 & solution.placedNumberCount>10):
+            lastPlacedNumbersCount = solution.placedNumberCount
+            solution.placedNumberCount += self.moveNothingElseAllowed(solution)
+            solution.placedNumberCount += self.moveNoOtherRowOrColumnAllowed(solution)
+            solution.placedNumberCount += self.moveNothingElseAllowed(solution)
+
+            if (solution.placedNumberCount < 35):
+                self.applyNakedPairs(solution)
+                self.applyLineCandidateConstraints(solution)
+            
+        if (solution.placedNumberCount < solution.cellAmount):
+            bruteForcedBoard = self.attemptBruteForce(solution)
+
+            if (bruteForcedBoard != None):
+                solution.placedNumberCount = 0
+                
+                print('TODO')
+           
+        return solution.board
+
+    def moveNothingElseAllowed(self, solution :SudokuBoard):
+        moveCount = 0
         
-       
+        for ix,iy in np.ndindex(solution.board.shape):
+            currentAllowedValues = solution.allowedValues[iy][ix]     
+            if (self.countSetBits(currentAllowedValues) == 1):
+                solution.setValue(ix, iy)
+                moveCount+=1
 
+        return moveCount
 
+    def moveNoOtherRowOrColumnAllowed(self, solution :SudokuBoard):
+        return 0
 
+    def moveNothingElseAllowed(self, solution :SudokuBoard):
+        return 0
+
+    def applyNakedPairs(self, solution :SudokuBoard):
+        return None
+    
+    def applyLineCandidateConstraints(self, solution :SudokuBoard):
+        return None
+
+    def attemptBruteForce(self, solution :SudokuBoard):
         return None

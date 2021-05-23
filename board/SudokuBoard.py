@@ -60,11 +60,29 @@ class SudokuBoard:
 
         return True
 
+    def countSetBits(self,x,y):
+        currentAllowedValues = self.allowedValues[y][x]
+        return bin(currentAllowedValues).count("1")
+
+    def getLastSetBitIndex(self,x,y):
+        currentAllowedValues = self.allowedValues[y][x]
+        bits = []
+        for i, c in enumerate(bin(currentAllowedValues)[:1:-1], 1):
+            if c == '1':
+                bits.append(i)
+
+        if len(bits)==0:
+            return -1
+        return bits[-1]
+
+    def setValue(self,x,y):
+        index = self.getLastSetBitIndex(x,y)
+        self.board[y][x]=self.allowedBitFields[index]
+        self.allowedValues[y][x] = 0
+        self.applyAllowedValuesMask(x,y)
+
 
     def applyAllowedValuesMask(self,x,y):
-
-        if ((x==5) & (y==1)):
-            print('Here')
 
         mask = ~self.allowedBitFields[self.board[y][x]]
 
