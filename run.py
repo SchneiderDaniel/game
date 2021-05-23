@@ -41,6 +41,5 @@ print(np.vectorize(np.binary_repr)(a, width=10))
 solver=SudokuSolver()
 
 
-b = fullboard.
 
 # solver.solve(fullboard)

@@ -32,6 +32,10 @@ fullboard = SudokuBoard(9)
 fullboard.fill(content)
 
 solver=SudokuSolver()
+solver2=SudokuSolver("PairsAndLines")
 
 def testSolution():
     assert solution.all()==solver.solve(fullboard).all()
+
+# def testSolution2():
+#     assert solution.all()==solver2.solve(fullboard).all()

@@ -3,7 +3,7 @@ from board.SudokuBoard import SudokuBoard
 
 class SudokuSolver:
 
-    def __init__(self, algo="backtracking"):
+    def __init__(self, algo="Backtracking"):
         self.algo = algo
 
     def __repr__(self):
@@ -15,9 +15,11 @@ class SudokuSolver:
         return False
 
     def solve(self,input):
-        if self.algo =="backtracking":
+        if self.algo =="Backtracking":
             return self.solveBacktracking(input)
-        else: return None
+        if self.algo=="PairsAndLines": 
+            return self.solvePairsAndLines(input)
+        return None
 
     def solveBacktracking(self, input :SudokuBoard):
         solution = input.getCopy()
