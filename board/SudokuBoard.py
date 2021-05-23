@@ -1,7 +1,7 @@
 import numpy as np
 import math
 import copy
-
+from random import shuffle
 
 class SudokuBoard:
 
@@ -16,10 +16,7 @@ class SudokuBoard:
         self.board.fill(-1)
 
     def __repr__(self):
-        result = "" 
-        for row in self.board:  
-            result+= "|" + row + "|" +"\n"
-        return result
+        return str(self.board)
 
     def __eq__(self, other):
         if isinstance(other, SudokuBoard):
@@ -43,9 +40,11 @@ class SudokuBoard:
         result = self.isEnterValid(x,y,value)
         if result: self.board[y,x]=value
         return result
+    
+    def reset(self,x,y):
+        self.board[y,x]=-1
 
     def isEnterValid(self,x,y,value):
-        if self.isCellFilled(x,y): return False
         if self.isColOfCellConatining(x,y,value): return False
         if self.isRowOfCellConatining(x,y,value): return False
         if self.isGridOfCellContaining(x,y,value): return False
@@ -56,6 +55,16 @@ class SudokuBoard:
         
     def isCellFilled(self,x,y):
         return not (self.board[y,x]==-1)
+
+    def getFreeCellsAsList(self):
+        result = []
+        for ix,iy in np.ndindex(self.board.shape):
+            if not self.isCellFilled(ix,iy):
+                result.append((ix,iy))
+        # print(result)
+        # shuffle(result)
+        # print(result)
+        return result
 
     def isRowOfCellConatining(self,x,y,value):
         return self.isRowContaining(y,value)

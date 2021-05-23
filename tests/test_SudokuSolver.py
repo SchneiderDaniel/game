@@ -34,4 +34,4 @@ fullboard.fill(content)
 solver=SudokuSolver()
 
 def testSolution():
-    assert solution==solver.solve(fullboard)
+    assert solution.all()==solver.solve(fullboard).all()

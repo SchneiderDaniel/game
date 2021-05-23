@@ -160,3 +160,11 @@ def testIsEnterValid6():
 
 def testIsEnterValid7():
     assert fullboard1.isEnterValid(2,7,8)==True
+
+def testEnter():
+
+    temp = fullboard1.getCopy()
+
+    temp.enter(0,0,3)
+
+    assert temp!=fullboard1
